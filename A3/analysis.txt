@@ -1,0 +1,32 @@
+How to run the program: python3 part1.py addr-simpleloop.ref 
+
+addr-simpleloop.ref: Instruction "0x0108000" page is access the most. The loop counter has to increment every iterations on the heap/stack, 
+which require read and write update. Moreover there are 10000 iterations, therefore we predict the loop counter is stored at this page.
+
+Counts:
+  Instructions  120406
+  Loads         50090
+  Stores        10063
+  Modifies      10006
+
+
+addr-matmul.ref: Instruction "0x0108000" page is access the most. Matrix C has to be initialize and sum by matrix a, b in every single iterations, 
+which requires a read and addition follow by a write acess. We believed the loop counter and result Matrix C arrays are stored on these pages.
+
+Counts:
+  Instructions  47473963
+  Loads         21491394
+  Stores        1180752
+  Modifies      1060125
+
+
+addr-blocked.ref: Instruction page "0x0109000" is access the most. There are a lot of inner loops in the program. The most inner loop's 
+counter will be access the most, which requires a read, then addtion and multiplication. In the end, the values has to be stored back in 
+array of struct C. We believed the loop counter and result struct C arrays are stored on these pages.
+
+Counts:
+  Instructions  51791748
+  Loads         21578983
+  Stores        1283021
+  Modifies      1091709
+
